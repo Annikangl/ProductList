@@ -26,4 +26,15 @@ $statement->bindValue(3,$status);
 $statement->bindValue(4,$id);
 $statement->execute();
 
+if (is_uploaded_file($_FILES['pictr']['tmp_name'])){
+    $image = $_FILES['pictr']['name'];
+    move_uploaded_file($_FILES['pictr']['tmp_name'],'uploads/'.$image);
+
+    $sql = "UPDATE product SET image=? WHERE id=?";
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(1,$image);
+    $statement->bindValue(2,$id);
+    $statement->execute();
+}
+
 header("Location: /index.php");

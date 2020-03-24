@@ -62,11 +62,14 @@ $product = $statement->fetch();
                         </select>
                     </div> -->
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="pictr">Картинка</label>
                         <input type="file" class="form-control" name="pictr">
-                        <img src="" alt="">
-                    </div> -->
+                        
+                    </div>
+                    <div class="form-group">
+                        <img width="100" src="<?= $product["image"]?>" alt="product-image">
+                    </div>
 
                     <div class="form-group">
                         <label for="">Показать</label>
