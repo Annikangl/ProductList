@@ -14,19 +14,9 @@ $opt = [
 ];
 $pdo = new PDO($dsn,$user,$passwd,$opt);
 
-$sql = "SELECT * FROM product WHERE id=?";
-$statement = $pdo->prepare($sql);
-$statement->bindValue(1, $id);
-$statement->execute();
-$product = $statement->fetch(PDO::FETCH_ASSOC);
-
-if(is_file('uploads/'.$product['image'])) {
-    unlink('uploads/'.$product['image']);
-}
-
-$sql = "DELETE FROM product WHERE id = ?";
+$sql = "DELETE FROM categories WHERE id = ?";
 $statement = $pdo->prepare($sql);
 $statement->bindValue(1,$id);
 $statement->execute();
 
-header("Location: ./index.php");
+header("Location: /categories/showCategories.php");

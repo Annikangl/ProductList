@@ -25,6 +25,12 @@ $statement->bindValue(1, $id);
 $statement->execute();
 $product = $statement->fetch();
 
+$sql = 'SELECT * FROM categories';
+$statement = $pdo->prepare($sql);
+$statement->bindValue(1, $id);
+$statement->execute();
+$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +48,7 @@ $product = $statement->fetch();
             <div class="col-md-6">
                 <h1>Изменение продукта</h1>
 
-                <form action="update.php" method="POST">
+                <form action="update.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $product['id']?>">
                     <div class="form-group">
                         <label for="">Название</label>
@@ -53,20 +59,20 @@ $product = $statement->fetch();
                         <textarea name="description" id="" cols="30" rows="10" class="form-control"><?= $product['description']?></textarea>
                     </div>
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="category">Категория</label>
                         <select name="category" id="" class="form-control">
-                            <option value="">Ноутбук</option>
-                            <option value="">Телефон</option>
-                            <option value="">Планшет</option>
+                        <?php foreach ($categories as $category) : ?>
+                            <option value="<?=$category['id'];?>" <?php echo $category['id'] == $product['category_id'] ? 'selected' : ''?>><?= $category['title']?></option>
+                        <?php endforeach;?>
                         </select>
-                    </div> -->
+                    </div>
 
                     <div class="form-group">
                         <label for="pictr">Картинка</label>
                         <input type="file" class="form-control" name="pictr">
-                        
                     </div>
+
                     <div class="form-group">
                         <img width="100" src="<?= $product["image"]?>" alt="product-image">
                     </div>

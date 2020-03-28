@@ -29,7 +29,7 @@ $statement = $pdo->prepare($sql);
 $statement->execute([
     'title' => $title,
     'description' => $description,
-    'image' => $image,
+    'image' => 'uploads/'.$image,
     'status' => $status,
     "category_id" => $category,
 ]);

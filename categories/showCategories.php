@@ -30,17 +30,22 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
         <div class="row">
             <div class="col-md-10">
                 <h1>Мои категории</h1>
-                <a href="#" class="btn btn-success">Добавить категории</a>
+                <a href="createCategory.php" class="btn btn-success">Добавить категории</a>
 
                 <table class="table">
                     <thead>
                         <th>ID</th>
                         <th>категория</th>
+                        <th>Действие</th>
                     </thead>
                     <?php foreach ($categories as $category) :?>
                     <tbody>
                         <td><?= $category['id']?></td>
                         <td><?= $category['title'] ?></td>
+                        <td>
+                            <a href="editCategory.php?id=<?= $category['id']?>" class="btn btn-warning">Изменить</a>
+                            <a href="deleteCategory.php?id=<?= $category['id']?>" class="btn btn-danger" onclick="return confirm('Вы уверены?')">Удалить</a>
+                        </td>
                     </tbody>
                     <?php endforeach;?>
                 </table>

@@ -32,7 +32,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-10">
                 <h1>Список продуктов</h1>
                 <a href="createProduct.php" class="btn btn-success">Добавить продукт</a>
-                <a href="showCategories.php" class="btn btn-success">Мои категории</a>
+                <a href="./categories/showCategories.php" class="btn btn-success">Мои категории</a>
                 <table class="table">
                     <thead>
                         <tr>
